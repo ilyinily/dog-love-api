@@ -41,8 +41,9 @@ post_db = [
 
 @app.get("/")
 def root():
-    return ("Вас приветствует ветеринарная клиника имени Тим. Собакина. Используйте команды из документации. Для "
-            "просмотра документации используйте ключ docs.")
+    return str(post_db)
+    # return ("Вас приветствует ветеринарная клиника имени Тим. Собакина. Используйте команды из документации. Для "
+    #         "просмотра документации используйте ключ docs.")
 
 
 # @app.post("/post")
@@ -52,7 +53,7 @@ def root():
 
 @app.post("/post")
 def get_post() -> str:
-    # post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=datetime.datetime.now()))
+    post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=datetime.datetime.now()))
     return "yay it works"
 
 # ваш код здесь
