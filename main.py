@@ -45,9 +45,14 @@ def root():
             "просмотра документации используйте ключ docs.")
 
 
+# @app.post("/post")
+# def get_post() -> Timestamp:
+#     post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=datetime.datetime.now()))
+#     return (post_db[-1]
+
 @app.post("/post")
-def get_post():
-    post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=datetime.datetime.now()))
-    return post_db[-1]
+def get_post() -> str:
+    # post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=datetime.datetime.now()))
+    return "yay it works"
 
 # ваш код здесь
