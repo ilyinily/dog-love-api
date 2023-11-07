@@ -41,19 +41,17 @@ post_db = [
 
 @app.get("/")
 def root() -> str:
-    return str(post_db)
-    # return ("Вас приветствует ветеринарная клиника имени Тим. Собакина. Используйте команды из документации. Для "
-    #         "просмотра документации используйте ключ docs.")
+    return ("Вас приветствует ветеринарная клиника имени Тим. Собакина. Используйте команды из документации. Для "
+            "просмотра документации используйте ключ docs.")
 
-
-# @app.post("/post")
-# def get_post() -> Timestamp:
-#     post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=datetime.datetime.now()))
-#     return (post_db[-1]
 
 @app.post("/post")
 def get_post() -> Timestamp:
     post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=int(time.time())))
     return post_db[-1]
 
-# ваш код здесь
+
+@app.get("/dog")
+def get_dogs(kind: DogType) -> list:
+    result = [dog in dogs_db.values() if dog.kind == kind]
+    return result
