@@ -1,7 +1,7 @@
 from enum import Enum
 from fastapi import FastAPI
 from pydantic import BaseModel
-import datetime
+import time
 
 app = FastAPI()
 
@@ -53,7 +53,7 @@ def root():
 
 @app.post("/post")
 def get_post() -> str:
-    post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=datetime.datetime.now()))
+    post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=int(time.time())))
     return "yay it works"
 
 # ваш код здесь
