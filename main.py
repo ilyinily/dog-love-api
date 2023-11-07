@@ -55,3 +55,9 @@ def get_post() -> Timestamp:
 def get_dogs(kind: DogType) -> list:
     result = [dog for dog in dogs_db.values() if dog.kind == kind]
     return result
+
+
+@app.post("/dog")
+def create_dog(dog: Dog) -> Dog:
+    dogs_db.update({len(dogs_db): dog})
+    return dogs_db.get(len(dogs_db) - 1)
