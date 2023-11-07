@@ -58,6 +58,6 @@ def get_dogs(kind: DogType) -> list:
 
 
 @app.post("/dog")
-def create_dog(dog: Dog) -> Dog:
-    dogs_db.update({len(dogs_db): dog})
+def create_dog(dog_dict: dict) -> Dog:
+    dogs_db.update({len(dogs_db): Dog(name=dog_dict.get("name"), pk=dog_dict.get("pk"), kind=dog_dict.get("kind"))})
     return dogs_db.get(len(dogs_db) - 1)
