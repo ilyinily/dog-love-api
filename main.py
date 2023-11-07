@@ -1,6 +1,7 @@
 from enum import Enum
 from fastapi import FastAPI
 from pydantic import BaseModel
+import datetime
 
 app = FastAPI()
 
@@ -40,7 +41,13 @@ post_db = [
 
 @app.get("/")
 def root():
-    return ("Вас приветствует ветеринарная клиника имени Тим. Собакина. Используйте команды из документации."
-            "Для просмотра документации используйте ключ docs.")
+    return ("Вас приветствует ветеринарная клиника имени Тим. Собакина. Используйте команды из документации. Для "
+            "просмотра документации используйте ключ docs.")
+
+
+@app.post("/post")
+def get_post():
+    post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=datetime.datetime.now()))
+    return post_db[-1]
 
 # ваш код здесь
