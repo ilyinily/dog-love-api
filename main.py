@@ -61,3 +61,21 @@ def get_dogs(kind: DogType) -> list:
 def create_dog(dog_dict: dict) -> Dog:
     dogs_db.update({len(dogs_db): Dog(name=dog_dict.get("name"), pk=dog_dict.get("pk"), kind=dog_dict.get("kind"))})
     return dogs_db.get(len(dogs_db) - 1)
+
+
+@app.get("/dog/{pk}")
+def get_dog_by_pk(pk: int) -> Dog:
+    result: Dog
+    for dog in dogs_db.values():
+        if dog.pk == pk:
+            result = dog
+    return result
+
+@app.patch("/dog/{pk}")
+def update_dog(pk: int, dog_dict: dict) -> Dog:
+    result: Dog
+    for dog_id, dog in dogs_db.items():
+        if dog.pk == pk:
+            dogs_db.update({dog_id: Dog(name=dog_dict.get("name"), pk=dog_dict.get("pk"), kind=dog_dict.get("kind"))})
+            result = dogs_db.get(dog_id)
+    return result
