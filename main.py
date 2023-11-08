@@ -52,8 +52,8 @@ def get_post() -> Timestamp:
 
 
 @app.get("/dog")
-def get_dogs(kind: DogType) -> list:
-    result = [dog for dog in dogs_db.values() if dog.kind == kind]
+def get_dogs(kind: DogType = "all_dogs") -> list:
+    result = [dog for dog in dogs_db.values() if dog.kind == kind] if kind != "all_dogs" else [dog for dog in dogs_db.values()]
     return result
 
 
